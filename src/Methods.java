@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 public class Methods {
 	private static ArrayList<JButton> listOButtons = new ArrayList<JButton>();
-	
+
 	/*
 	 * This is where all of the methods will go for the buttons The first method
 	 * below decides what the button will do on click in this case it opens a
@@ -24,9 +24,8 @@ public class Methods {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				JDialog dialog = new JDialog();
-				
 
 				dialog.setLocation(200, 200);
 				dialog.setModal(true);
@@ -38,7 +37,7 @@ public class Methods {
 				dialog.setSize(400, 400);
 				dialog.add(panel);
 				dialog.setVisible(true);
-				
+
 			}
 
 		});
@@ -49,7 +48,7 @@ public class Methods {
 	 * This method just adds nine buttons to the gridlayout of the jpanel
 	 */
 	public static void makeNineButtons(JPanel p) {
-		
+
 		for (int x = 0; x < 9; x++) {
 			JButton b = new JButton("");
 			b.setBackground(Color.white);
@@ -57,48 +56,51 @@ public class Methods {
 			listOButtons.add(b);
 		}
 	}
+
+	protected static int count;
+
 	/*
-	 * This is where i'll change the icons on click
-	 * for now this is where i will play the game, but this will probably end up being placed
-	 * in another class
+	 * This is where i'll change the icons on click for now this is where i will
+	 * play the game, but this will probably end up being placed in another
+	 * class
 	 */
-	public static void playGame(){
-	
-		
-		for(int x =0; x<listOButtons.size(); x++){
-			
-			
-			
+	public static void playGame() {
+
+		for (int x = 0; x < listOButtons.size(); x++) {
+
 			JButton temp = listOButtons.get(x);
-			
-			temp.addActionListener(new ActionListener(){
-				
+
+			temp.addActionListener(new ActionListener() {
+
 				Icon img = new ImageIcon("exes.png");
-				int count = 0;
-				
+				Icon img2 = new ImageIcon("os.png");
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					count++;
-					
-					if(count>0){
-						
+
+					if (count > 0 && count % 2 != 0) {
+
 						temp.setIcon(img);
 						temp.setDisabledIcon(img);
 						temp.setEnabled(false);
-						
-						
+
+					}
+					if (count > 0 && count % 2 == 0) {
+
+						temp.setIcon(img);
+						temp.setDisabledIcon(img2);
+						temp.setEnabled(false);
+
 					}
 					System.out.print(count);
-				
-					
-				}
-				
-			});
-			
-			}
-		}
-	
-	
 
+				}
+
+			});
+
+		}
+		
 	}
 
+}
