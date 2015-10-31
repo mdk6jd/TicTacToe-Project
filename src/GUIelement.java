@@ -6,29 +6,28 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 public class GUIelement {
-	
-	public static void main(String arg[]){
+
+	public static void main(String arg[]) {
 		/*
 		 * Setting up the jframe and the canvas to put things on
 		 */
 		JFrame frame = new JFrame();
-		frame.setSize(600,600);
+		frame.setSize(600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(100, 100);
 		/*
-		 * this panel was created to be place on top
-		 * of the j frame and has a grid layout in a grid of
-		 * 3 by 3's.
+		 * this panel was created to be place on top of the j frame and has a
+		 * grid layout in a grid of 3 by 3's.
 		 */
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLUE);
 		JButton button1 = new JButton("1");
-		GridLayout grid = new GridLayout(3,3,2,2);
+		GridLayout grid = new GridLayout(3, 3, 4, 4);
 		panel.setLayout(grid);
 		/*
-		 *All the buttons were added to the grid 
-		 *named and colored to black
+		 * All the buttons were added to the gridnamed and colored to black
 		 */
 		JButton buttona = new JButton("");
 		buttona.setBackground(Color.black);
@@ -60,7 +59,9 @@ public class GUIelement {
 		/*
 		 * For every button clicked a new window will open
 		 */
+		int count = 0;
 		Methods.newWindowOnClick(buttona);
+
 		Methods.newWindowOnClick(buttonb);
 		Methods.newWindowOnClick(buttonc);
 		Methods.newWindowOnClick(buttond);
@@ -69,14 +70,9 @@ public class GUIelement {
 		Methods.newWindowOnClick(buttong);
 		Methods.newWindowOnClick(buttonh);
 		Methods.newWindowOnClick(buttoni);
-		
-		
-			
-		
 
-		
 		frame.add(panel);
-		
+
 		frame.setVisible(true);
 	}
 }
