@@ -200,6 +200,29 @@ public class Methods {
 						dialog.setVisible(true);
 						count = 1;
 
+					} else if (posx.size()==4 && poso.size() ==5 ||poso.size()==4 && posx.size() ==5){
+						JDialog dialog = new JDialog();
+						dialog.setSize(200, 100);
+						JLabel winstatus = new JLabel();
+						winstatus.setText("It seems it's a tie!");
+						winstatus.setHorizontalAlignment(SwingConstants.CENTER);
+						dialog.add(winstatus);
+						dialog.addWindowListener(new WindowAdapter() {
+							public void windowClosing(WindowEvent e) {
+								pan.removeAll();
+								pan.updateUI();
+								posx.clear();
+								poso.clear();
+								listOButtons.clear();
+								dia.dispose();
+							}
+						});
+						posx.clear();
+						poso.clear();
+
+						dialog.setModal(true);
+						dialog.setVisible(true);
+						count = 1;
 					}
 
 				}
@@ -216,3 +239,4 @@ public class Methods {
 	}
 
 }
+
