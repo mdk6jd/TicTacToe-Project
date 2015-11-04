@@ -101,6 +101,7 @@ public class Methods {
 				Icon img = new ImageIcon("exes.png");
 				Icon img2 = new ImageIcon("os.png");
 				Icon img3 = new ImageIcon("mainexes.png");
+				Icon img4 = new ImageIcon("mainos.png");
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -156,7 +157,7 @@ public class Methods {
 								poso.clear();
 								listOButtons.clear();
 								dia.dispose();
-								mainButtons.setIcon(img);
+								mainButtons.setIcon(img3);
 								mainButtons.setDisabledIcon(img3);
 								mainButtons.setEnabled(false);
 							}
@@ -199,7 +200,9 @@ public class Methods {
 								poso.clear();
 								listOButtons.clear();
 								dia.dispose();
-								mainButtons.setText("O's WON");
+								mainButtons.setIcon(img4);
+								mainButtons.setDisabledIcon(img4);
+								mainButtons.setEnabled(false);
 							}
 						});
 						posx.clear();
