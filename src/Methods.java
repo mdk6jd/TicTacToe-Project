@@ -19,6 +19,7 @@ public class Methods {
 	private static JPanel pan = new JPanel();
 	private static JDialog dia = new JDialog();
 	protected static int checkforwin = 0;
+	private static JButton mainButtons;
 
 	/*
 	 * This is where all of the methods will go for the buttons The first method
@@ -32,6 +33,7 @@ public class Methods {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainButtons=b;
 
 				dia.setLocation(200, 200);
 				dia.setModal(true);
@@ -46,6 +48,7 @@ public class Methods {
 
 				dia.setVisible(true);
 				Methods.closeDialog4Win(dia);
+				
 
 			}
 
@@ -97,6 +100,7 @@ public class Methods {
 
 				Icon img = new ImageIcon("exes.png");
 				Icon img2 = new ImageIcon("os.png");
+				Icon img3 = new ImageIcon("mainexes.png");
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -139,7 +143,7 @@ public class Methods {
 							|| (posx.contains(6) && posx.contains(7) && posx
 									.contains(8))) {
 						JDialog dialog = new JDialog();
-						dialog.setSize(200, 100);
+						dialog.setSize(160, 160);
 						JLabel winstatus = new JLabel();
 						winstatus.setText("It seems the X's have won!");
 						winstatus.setHorizontalAlignment(SwingConstants.CENTER);
@@ -152,6 +156,9 @@ public class Methods {
 								poso.clear();
 								listOButtons.clear();
 								dia.dispose();
+								mainButtons.setIcon(img);
+								mainButtons.setDisabledIcon(img3);
+								mainButtons.setEnabled(false);
 							}
 						});
 						posx.clear();
@@ -179,6 +186,7 @@ public class Methods {
 									.contains(8))) {
 						JDialog dialog = new JDialog();
 						dialog.setSize(200, 100);
+						dialog.setLocation(160,160);
 						JLabel winstatus = new JLabel();
 						winstatus.setText("It seems the O's have won!");
 						winstatus.setHorizontalAlignment(SwingConstants.CENTER);
@@ -191,6 +199,7 @@ public class Methods {
 								poso.clear();
 								listOButtons.clear();
 								dia.dispose();
+								mainButtons.setText("O's WON");
 							}
 						});
 						posx.clear();
@@ -200,7 +209,8 @@ public class Methods {
 						dialog.setVisible(true);
 						count = 1;
 
-					} else if (posx.size()==4 && poso.size() ==5 ||poso.size()==4 && posx.size() ==5){
+					} else if (posx.size() == 4 && poso.size() == 5
+							|| poso.size() == 4 && posx.size() == 5) {
 						JDialog dialog = new JDialog();
 						dialog.setSize(200, 100);
 						JLabel winstatus = new JLabel();
@@ -239,4 +249,3 @@ public class Methods {
 	}
 
 }
-
