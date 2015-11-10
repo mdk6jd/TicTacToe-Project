@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -20,6 +22,9 @@ public class Methods {
 	private static JDialog dia = new JDialog();
 	protected static int checkforwin = 0;
 	private static JButton mainButtons;
+	private static JFrame mainFrame;
+	private static ArrayList<String> mainChecksX = new ArrayList<String>();
+	private static ArrayList<String> mainChecksO = new ArrayList<String>();
 
 	/*
 	 * This is where all of the methods will go for the buttons The first method
@@ -27,13 +32,14 @@ public class Methods {
 	 * new window
 	 */
 
-	public static void newWindowOnClick(JButton b) {
+	public static void newWindowOnClick(JButton b, JFrame j) {
 
 		b.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainButtons=b;
+				mainButtons = b;
+				mainFrame = j;
 
 				dia.setLocation(200, 200);
 				dia.setModal(true);
@@ -48,7 +54,6 @@ public class Methods {
 
 				dia.setVisible(true);
 				Methods.closeDialog4Win(dia);
-				
 
 			}
 
@@ -123,10 +128,7 @@ public class Methods {
 						poso.add(pos);
 
 					}
-					System.out.print(count);
-					System.out.println("Position x: " + posx + "Position o: "
-							+ poso);
-
+					
 					if ((posx.contains(1) && posx.contains(2) && posx
 							.contains(0))
 							|| (posx.contains(0) && posx.contains(3) && posx
@@ -143,30 +145,45 @@ public class Methods {
 									.contains(5))
 							|| (posx.contains(6) && posx.contains(7) && posx
 									.contains(8))) {
-						JDialog dialog = new JDialog();
-						dialog.setSize(160, 160);
-						JLabel winstatus = new JLabel();
-						winstatus.setText("It seems the X's have won!");
-						winstatus.setHorizontalAlignment(SwingConstants.CENTER);
-						dialog.add(winstatus);
-						dialog.addWindowListener(new WindowAdapter() {
-							public void windowClosing(WindowEvent e) {
-								pan.removeAll();
-								pan.updateUI();
-								posx.clear();
-								poso.clear();
-								listOButtons.clear();
-								dia.dispose();
-								mainButtons.setIcon(img3);
-								mainButtons.setDisabledIcon(img3);
-								mainButtons.setEnabled(false);
-							}
-						});
+						pan.removeAll();
+						pan.updateUI();
 						posx.clear();
 						poso.clear();
-
-						dialog.setModal(true);
-						dialog.setVisible(true);
+						listOButtons.clear();
+						dia.dispose();
+						mainButtons.setIcon(img3);
+						mainButtons.setDisabledIcon(img3);
+						mainButtons.setEnabled(false);
+						mainChecksX.add(mainButtons.getName());
+						Methods.mainWinStatus();
+						posx.clear();
+						poso.clear();
+						// JDialog dialog = new JDialog();
+						// dialog.setSize(160, 160);
+						// JLabel winstatus = new JLabel();
+						// winstatus.setText("It seems the X's have won!");
+						// winstatus.setHorizontalAlignment(SwingConstants.CENTER);
+						// dialog.add(winstatus);
+						// dialog.addWindowListener(new WindowAdapter() {
+						// public void windowClosing(WindowEvent e) {
+						// pan.removeAll();
+						// pan.updateUI();
+						// posx.clear();
+						// poso.clear();
+						// listOButtons.clear();
+						// dia.dispose();
+						// mainButtons.setIcon(img3);
+						// mainButtons.setDisabledIcon(img3);
+						// mainButtons.setEnabled(false);
+						// mainChecksX.add(mainButtons.getName());
+						// Methods.mainWinStatus();
+						// }
+						// });
+						// posx.clear();
+						// poso.clear();
+						//
+						// dialog.setModal(true);
+						// dialog.setVisible(true);
 						count = 0;
 
 					} else if ((poso.contains(1) && poso.contains(2) && poso
@@ -185,31 +202,52 @@ public class Methods {
 									.contains(5))
 							|| (poso.contains(6) && poso.contains(7) && poso
 									.contains(8))) {
-						JDialog dialog = new JDialog();
-						dialog.setSize(200, 100);
-						dialog.setLocation(160,160);
-						JLabel winstatus = new JLabel();
-						winstatus.setText("It seems the O's have won!");
-						winstatus.setHorizontalAlignment(SwingConstants.CENTER);
-						dialog.add(winstatus);
-						dialog.addWindowListener(new WindowAdapter() {
-							public void windowClosing(WindowEvent e) {
-								pan.removeAll();
-								pan.updateUI();
-								posx.clear();
-								poso.clear();
-								listOButtons.clear();
-								dia.dispose();
-								mainButtons.setIcon(img4);
-								mainButtons.setDisabledIcon(img4);
-								mainButtons.setEnabled(false);
-							}
-						});
+						pan.removeAll();
+						pan.updateUI();
 						posx.clear();
 						poso.clear();
+						listOButtons.clear();
+						dia.dispose();
+						mainButtons.setIcon(img4);
+						mainButtons.setDisabledIcon(img4);
+						mainButtons.setEnabled(false);
+						mainChecksO.add(mainButtons.getName());
+						Methods.mainWinStatus();
+						posx.clear();
+						poso.clear();
+						
+						
+						
 
-						dialog.setModal(true);
-						dialog.setVisible(true);
+						// JDialog dialog = new JDialog();
+						// dialog.setSize(200, 100);
+						// dialog.setLocation(160,160);
+						// JLabel winstatus = new JLabel();
+						// winstatus.setText("It seems the O's have won!");
+						// winstatus.setHorizontalAlignment(SwingConstants.CENTER);
+						// dialog.add(winstatus);
+						// dialog.addWindowListener(new WindowAdapter() {
+						// public void windowClosing(WindowEvent e) {
+						// pan.removeAll();
+						// pan.updateUI();
+						// posx.clear();
+						// poso.clear();
+						// listOButtons.clear();
+						// dia.dispose();
+						// mainButtons.setIcon(img4);
+						// mainButtons.setDisabledIcon(img4);
+						// mainButtons.setEnabled(false);
+						// mainChecksO.add(mainButtons.getName());
+						// Methods.mainWinStatus();
+						//
+						// }
+						// });
+						// posx.clear();
+						// poso.clear();
+						//
+						// dialog.setModal(true);
+						// dialog.setVisible(true);
+
 						count = 1;
 
 					} else if (posx.size() == 4 && poso.size() == 5
@@ -228,6 +266,8 @@ public class Methods {
 								poso.clear();
 								listOButtons.clear();
 								dia.dispose();
+								
+
 							}
 						});
 						posx.clear();
@@ -249,6 +289,97 @@ public class Methods {
 	public static void closeDialog4Win(JDialog d) {
 		d.dispose();
 
+	}
+
+	public static void mainWinStatus() {
+		if (!mainButtons.isEnabled()) {
+			if ((mainChecksX.contains("a") && mainChecksX.contains("b") && mainChecksX
+					.contains("c"))
+					|| (mainChecksX.contains("a") && mainChecksX.contains("e") && mainChecksX
+							.contains("i"))
+					|| (mainChecksX.contains("a") && mainChecksX.contains("d") && mainChecksX
+							.contains("g"))
+					|| (mainChecksX.contains("b") && mainChecksX.contains("e") && mainChecksX
+							.contains("h"))
+					|| (mainChecksX.contains("c") && mainChecksX.contains("e") && mainChecksX
+							.contains("g"))
+					|| (mainChecksX.contains("c") && mainChecksX.contains("f") && mainChecksX
+							.contains("i"))
+					|| (mainChecksX.contains("d") && mainChecksX.contains("e") && mainChecksX
+							.contains("f"))
+					|| (mainChecksX.contains("g") && mainChecksX.contains("h") && mainChecksX
+							.contains("i"))) {
+				JDialog winDialog = new JDialog();
+				winDialog.setSize(200, 100);
+				winDialog.setLocation(160, 160);
+				JPanel pane = new JPanel();
+				pane.setBackground(Color.LIGHT_GRAY);
+				JLabel label = new JLabel("X's WIN");
+				label.setForeground(Color.DARK_GRAY);
+			
+				label.setFont(new Font("Helvetica", Font.PLAIN, 27));
+				
+				pane.add(label);
+				winDialog.add(pane);
+				
+				winDialog.addWindowListener(new WindowAdapter(){
+					public void windowClosing(WindowEvent e){
+						System.out.println("YOOOOO");
+						mainChecksX.clear();
+						mainChecksO.clear();
+						mainFrame.removeAll();
+						mainFrame.repaint();
+						mainFrame.dispose();
+					    GUIelement.play();
+						
+					}
+				});
+				winDialog.setModal(true);
+				winDialog.setVisible(true);
+			}
+			else if((mainChecksO.contains("a") && mainChecksO.contains("b") && mainChecksO
+					.contains("c"))
+					|| (mainChecksO.contains("a") && mainChecksO.contains("e") && mainChecksO
+							.contains("i"))
+					|| (mainChecksO.contains("a") && mainChecksO.contains("d") && mainChecksO
+							.contains("g"))
+					|| (mainChecksO.contains("b") && mainChecksO.contains("e") && mainChecksO
+							.contains("h"))
+					|| (mainChecksO.contains("c") && mainChecksO.contains("e") && mainChecksO
+							.contains("g"))
+					|| (mainChecksO.contains("c") && mainChecksO.contains("f") && mainChecksO
+							.contains("i"))
+					|| (mainChecksO.contains("d") && mainChecksO.contains("e") && mainChecksO
+							.contains("f"))
+					|| (mainChecksO.contains("g") && mainChecksO.contains("h") && mainChecksO
+							.contains("i"))) {
+				JDialog winDialog = new JDialog();
+				winDialog.setSize(200,100);
+				winDialog.setLocation(160, 160);
+				JPanel pane = new JPanel();
+				pane.setBackground(Color.DARK_GRAY);
+				JLabel label = new JLabel("O's WIN!");
+				label.setFont(new Font("Tahoma", Font.PLAIN, 27));
+				label.setForeground(Color.white);
+				pane.add(label);
+				winDialog.add(pane);
+				
+				winDialog.addWindowListener(new WindowAdapter(){
+					public void windowClosing(WindowEvent e){
+						
+						mainChecksX.clear();
+						mainChecksO.clear();
+						mainFrame.removeAll();
+						mainFrame.repaint();
+						mainFrame.dispose();
+						GUIelement.play();
+						
+					}
+				});
+				winDialog.setModal(true);
+				winDialog.setVisible(true);
+			}
+		}
 	}
 
 }
