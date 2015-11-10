@@ -1,15 +1,18 @@
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class GUIelement {
+	public static void main(String[] args) {
+		GUIelement.play();
+	}
 
-	public static void main(String arg[]) {
+
+	public static void play() {
 		/*
 		 * Setting up the jframe and the canvas to put things on
 		 */
@@ -31,22 +34,31 @@ public class GUIelement {
 		 */
 		JButton buttona = new JButton("");
 		buttona.setBackground(Color.black);
+		buttona.setName("a");
 		JButton buttonb = new JButton("");
 		buttonb.setBackground(Color.black);
+		buttonb.setName("b");
 		JButton buttonc = new JButton("");
 		buttonc.setBackground(Color.black);
+		buttonc.setName("c");
 		JButton buttond = new JButton("");
 		buttond.setBackground(Color.black);
+		buttond.setName("d");
 		JButton buttone = new JButton("");
 		buttone.setBackground(Color.black);
+		buttone.setName("e");
 		JButton buttonf = new JButton("");
 		buttonf.setBackground(Color.black);
+		buttonf.setName("f");
 		JButton buttong = new JButton("");
 		buttong.setBackground(Color.black);
+		buttong.setName("g");
 		JButton buttonh = new JButton("");
 		buttonh.setBackground(Color.black);
+		buttonh.setName("h");
 		JButton buttoni = new JButton("");
 		buttoni.setBackground(Color.black);
+		buttoni.setName("i");
 		panel.add(buttona);
 		panel.add(buttonb);
 		panel.add(buttonc);
@@ -60,19 +72,25 @@ public class GUIelement {
 		 * For every button clicked a new window will open
 		 */
 		int count = 0;
-		Methods.newWindowOnClick(buttona);
-
-		Methods.newWindowOnClick(buttonb);
-		Methods.newWindowOnClick(buttonc);
-		Methods.newWindowOnClick(buttond);
-		Methods.newWindowOnClick(buttone);
-		Methods.newWindowOnClick(buttonf);
-		Methods.newWindowOnClick(buttong);
-		Methods.newWindowOnClick(buttonh);
-		Methods.newWindowOnClick(buttoni);
+		
+		Methods.newWindowOnClick(buttona,frame);
+		
+		
+			
+		Methods.newWindowOnClick(buttonb,frame);
+		Methods.newWindowOnClick(buttonc,frame);
+		Methods.newWindowOnClick(buttond,frame);
+		Methods.newWindowOnClick(buttone,frame);
+		Methods.newWindowOnClick(buttonf,frame);
+		Methods.newWindowOnClick(buttong,frame);
+		Methods.newWindowOnClick(buttonh,frame);
+		Methods.newWindowOnClick(buttoni,frame);
 
 		frame.add(panel);
-
 		frame.setVisible(true);
+
+		
+		
 	}
+		
 }
