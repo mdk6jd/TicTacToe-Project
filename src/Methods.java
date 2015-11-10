@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -13,7 +16,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class Methods {
@@ -128,7 +133,7 @@ public class Methods {
 						poso.add(pos);
 
 					}
-					
+
 					if ((posx.contains(1) && posx.contains(2) && posx
 							.contains(0))
 							|| (posx.contains(0) && posx.contains(3) && posx
@@ -215,9 +220,6 @@ public class Methods {
 						Methods.mainWinStatus();
 						posx.clear();
 						poso.clear();
-						
-						
-						
 
 						// JDialog dialog = new JDialog();
 						// dialog.setSize(200, 100);
@@ -266,7 +268,6 @@ public class Methods {
 								poso.clear();
 								listOButtons.clear();
 								dia.dispose();
-								
 
 							}
 						});
@@ -316,28 +317,27 @@ public class Methods {
 				pane.setBackground(Color.LIGHT_GRAY);
 				JLabel label = new JLabel("X's WIN");
 				label.setForeground(Color.DARK_GRAY);
-			
+
 				label.setFont(new Font("Helvetica", Font.PLAIN, 27));
-				
+
 				pane.add(label);
 				winDialog.add(pane);
-				
-				winDialog.addWindowListener(new WindowAdapter(){
-					public void windowClosing(WindowEvent e){
-						System.out.println("YOOOOO");
+
+				winDialog.addWindowListener(new WindowAdapter() {
+					public void windowClosing(WindowEvent e) {
+						// System.out.println("YOOOOO");
 						mainChecksX.clear();
 						mainChecksO.clear();
 						mainFrame.removeAll();
 						mainFrame.repaint();
 						mainFrame.dispose();
-					    GUIelement.play();
-						
+						GUIelement.play();
+
 					}
 				});
 				winDialog.setModal(true);
 				winDialog.setVisible(true);
-			}
-			else if((mainChecksO.contains("a") && mainChecksO.contains("b") && mainChecksO
+			} else if ((mainChecksO.contains("a") && mainChecksO.contains("b") && mainChecksO
 					.contains("c"))
 					|| (mainChecksO.contains("a") && mainChecksO.contains("e") && mainChecksO
 							.contains("i"))
@@ -354,7 +354,7 @@ public class Methods {
 					|| (mainChecksO.contains("g") && mainChecksO.contains("h") && mainChecksO
 							.contains("i"))) {
 				JDialog winDialog = new JDialog();
-				winDialog.setSize(200,100);
+				winDialog.setSize(200, 100);
 				winDialog.setLocation(160, 160);
 				JPanel pane = new JPanel();
 				pane.setBackground(Color.DARK_GRAY);
@@ -363,23 +363,93 @@ public class Methods {
 				label.setForeground(Color.white);
 				pane.add(label);
 				winDialog.add(pane);
-				
-				winDialog.addWindowListener(new WindowAdapter(){
-					public void windowClosing(WindowEvent e){
-						
+
+				winDialog.addWindowListener(new WindowAdapter() {
+					public void windowClosing(WindowEvent e) {
+
 						mainChecksX.clear();
 						mainChecksO.clear();
 						mainFrame.removeAll();
 						mainFrame.repaint();
 						mainFrame.dispose();
 						GUIelement.play();
-						
+
 					}
 				});
 				winDialog.setModal(true);
 				winDialog.setVisible(true);
+			} else if (mainChecksX.size() == 4 && mainChecksO.size() == 5
+					|| mainChecksO.size() == 4 && mainChecksX.size() == 5) {
+				// tie situation
+				JDialog tieDialog = new JDialog();
+				tieDialog.setSize(200, 200);
+				tieDialog.setLocation(200, 200);
+				JPanel tiePanel = new JPanel();
+
+				boolean status = true;
+				while (status) {
+					JOptionPane xGuess = new JOptionPane();
+					String xNumber = (String) JOptionPane
+							.showInputDialog("It's a Tie! \n X: Pick a number between 1 and 100");
+					JOptionPane oGuess = new JOptionPane();
+					String oNumber = (String) JOptionPane
+							.showInputDialog("O: Pick a number between 1 and 100");
+
+					Random randomGenerator = new Random();
+					int randomInt = randomGenerator.nextInt(100);
+					int intXNumber = Integer.parseInt(xNumber);
+					int intONumber = Integer.parseInt(oNumber);
+					int xDifference = randomInt - intXNumber;
+					int oDifference = randomInt - intONumber;
+
+					if (Math.abs(xDifference) > Math.abs(oDifference)) {
+						JDialog winDialog = new JDialog();
+						winDialog.setSize(200, 100);
+						winDialog.setLocation(160, 160);
+						JPanel pane = new JPanel();
+						pane.setBackground(Color.DARK_GRAY);
+						JLabel label = new JLabel("O's WIN!");
+						label.setFont(new Font("Tahoma", Font.PLAIN, 27));
+						label.setForeground(Color.white);
+						pane.add(label);
+						winDialog.add(pane);
+						winDialog.setModal(true);
+						winDialog.setVisible(true);
+						status = false;
+					} else if (Math.abs(xDifference) < Math.abs(oDifference)) {
+						JDialog winDialog = new JDialog();
+						winDialog.setSize(200, 100);
+						winDialog.setLocation(160, 160);
+						JPanel pane = new JPanel();
+						pane.setBackground(Color.DARK_GRAY);
+						JLabel label = new JLabel("X's WIN!");
+						label.setFont(new Font("Tahoma", Font.PLAIN, 27));
+						label.setForeground(Color.white);
+						pane.add(label);
+						winDialog.add(pane);
+						winDialog.setModal(true);
+						winDialog.setVisible(true);
+						status = false;
+					}
+				}
 			}
 		}
 	}
+
+	// public static void explosion() throws MalformedURLException {
+	//
+	// URL url = new
+	// URL("https://www.giphy.com/gifs/explosion-nuclear-12KiGLydHEdak8");
+	// Icon icon = new ImageIcon(url);
+	// JLabel label = new JLabel(icon);
+	//
+	// JFrame f = new JFrame("Animation");
+	// f.getContentPane().add(label);
+	// f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	// f.pack();
+	// f.setLocationRelativeTo(null);
+	// f.setVisible(true);
+	//
+	// }
 
 }
