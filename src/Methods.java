@@ -254,29 +254,112 @@ public class Methods {
 
 					} else if (posx.size() == 4 && poso.size() == 5
 							|| poso.size() == 4 && posx.size() == 5) {
-						JDialog dialog = new JDialog();
-						dialog.setSize(200, 100);
-						JLabel winstatus = new JLabel();
-						winstatus.setText("It seems it's a tie!");
-						winstatus.setHorizontalAlignment(SwingConstants.CENTER);
-						dialog.add(winstatus);
-						dialog.addWindowListener(new WindowAdapter() {
-							public void windowClosing(WindowEvent e) {
-								pan.removeAll();
-								pan.updateUI();
-								posx.clear();
-								poso.clear();
-								listOButtons.clear();
-								dia.dispose();
+											JDialog dialog = new JDialog();
+							dialog.setLayout(new GridLayout(2, 2));
+							JButton replay = new JButton("Replay");
+							JButton guess = new JButton("Play Guess the Number");
+							dialog.setSize(500, 200);
+							dialog.getContentPane().setBackground(Color.green);
+							JLabel winstatus = new JLabel();
+							JLabel question = new JLabel();
+							Font csans = new Font("Helvetica", 15, 15);
+							question.setFont(csans);
+							question.setText("replay or play my guessing game?");
+							question.setHorizontalAlignment(SwingConstants.CENTER);
+							winstatus.setFont(csans);
+							winstatus.setText("It seems it's a tie! Would you like to:");
+							winstatus.setHorizontalAlignment(SwingConstants.CENTER);
+							dialog.add(winstatus);
+							dialog.add(question);
+							dialog.add(replay);
+							dialog.add(guess);
+							dialog.setLocationRelativeTo(mainFrame);
+							replay.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent arg0) {
+									dialog.dispose();
+									posx.clear();
+									poso.clear();
+									pan.removeAll();
+									pan.updateUI();
+									listOButtons.clear();
+									dia.dispose();
+								}
+							});
+	
+							guess.addActionListener(new ActionListener() {
+	
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									dialog.dispose();
+									JDialog tieDialog = new JDialog();
+									tieDialog.setSize(200, 200);
+									tieDialog.setLocation(200, 200);
+									JPanel tiePanel = new JPanel();
+	
+									boolean status = true;
+									while (status) {
+										String xNumber = (String) JOptionPane
+												.showInputDialog("Player X, guess a number 1-10:");
+										String oNumber = (String) JOptionPane
+												.showInputDialog("Player O, guess a number 1-10:");
+	
+										Random randomGenerator = new Random();
+										int randomInt = randomGenerator.nextInt(100);
+										int intXNumber = Integer.parseInt(xNumber);
+										int intONumber = Integer.parseInt(oNumber);
+										int xDifference = randomInt - intXNumber;
+										int oDifference = randomInt - intONumber;
+	
+										if (Math.abs(xDifference) > Math.abs(oDifference)) {
+											pan.removeAll();
+											pan.updateUI();
+											posx.clear();
+											poso.clear();
+											listOButtons.clear();
+											dia.dispose();
+											mainButtons.setIcon(img4);
+											mainButtons.setDisabledIcon(img4);
+											mainButtons.setEnabled(false);
+											mainChecksO.add(mainButtons.getName());
+											Methods.mainWinStatus();
+											posx.clear();
+											poso.clear();
+											count = 1;
+											status = false;
+										} else if (Math.abs(xDifference) < Math.abs(oDifference)) {
+											pan.removeAll();
+											pan.updateUI();
+											posx.clear();
+											poso.clear();
+											listOButtons.clear();
+											dia.dispose();
+											mainButtons.setIcon(img3);
+											mainButtons.setDisabledIcon(img3);
+											mainButtons.setEnabled(false);
+											mainChecksX.add(mainButtons.getName());
+											Methods.mainWinStatus();
+											posx.clear();
+											poso.clear();
+											count = 0;
+											status = false;
+										}
+	
+									}
+								}
+	
+							});
+							dialog.setModal(true);
+							dialog.setVisible(true);
+							count = 1;
+						}
+	
+					}
+	
+				});
+	
+			}
 
-							}
-						});
-						posx.clear();
-						poso.clear();
-
-						dialog.setModal(true);
-						dialog.setVisible(true);
-						count = 1;
 					}
 
 				}
