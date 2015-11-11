@@ -381,6 +381,7 @@ public class Methods {
 			} else if (mainChecksX.size() == 4 && mainChecksO.size() == 5
 					|| mainChecksO.size() == 4 && mainChecksX.size() == 5) {
 				// tie situation
+				
 				JDialog tieDialog = new JDialog();
 				tieDialog.setSize(200, 200);
 				tieDialog.setLocation(200, 200);
@@ -403,32 +404,24 @@ public class Methods {
 					int oDifference = randomInt - intONumber;
 
 					if (Math.abs(xDifference) > Math.abs(oDifference)) {
-						JDialog winDialog = new JDialog();
-						winDialog.setSize(200, 100);
-						winDialog.setLocation(160, 160);
-						JPanel pane = new JPanel();
-						pane.setBackground(Color.DARK_GRAY);
-						JLabel label = new JLabel("O's WIN!");
-						label.setFont(new Font("Tahoma", Font.PLAIN, 27));
-						label.setForeground(Color.white);
-						pane.add(label);
-						winDialog.add(pane);
-						winDialog.setModal(true);
+						ImageIcon img = new ImageIcon("ofinalwin.jpg");
+						JLabel winDialog = new JLabel();
+						winDialog.setIcon(img);
 						winDialog.setVisible(true);
+						JFrame f = new JFrame();
+						f.add(winDialog);
+						f.setSize(400, 500);
+						f.setVisible(true);
 						status = false;
 					} else if (Math.abs(xDifference) < Math.abs(oDifference)) {
-						JDialog winDialog = new JDialog();
-						winDialog.setSize(200, 100);
-						winDialog.setLocation(160, 160);
-						JPanel pane = new JPanel();
-						pane.setBackground(Color.DARK_GRAY);
-						JLabel label = new JLabel("X's WIN!");
-						label.setFont(new Font("Tahoma", Font.PLAIN, 27));
-						label.setForeground(Color.white);
-						pane.add(label);
-						winDialog.add(pane);
-						winDialog.setModal(true);
+						ImageIcon img = new ImageIcon("xfinalwin.jpg");
+						JLabel winDialog = new JLabel();
+						winDialog.setIcon(img);
 						winDialog.setVisible(true);
+						JFrame f = new JFrame();
+						f.add(winDialog);
+						f.setSize(400, 500);
+						f.setVisible(true);
 						status = false;
 					}
 				}
