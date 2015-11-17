@@ -1,6 +1,9 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,8 +23,9 @@ public class GUIelement {
 		frame.setSize(600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(100, 100);
+		
 		/*
-		 * this panel was created to be place on top of the j frame and has a
+		 * this panel was created to nbe place on top of the j frame and has a
 		 * grid layout in a grid of 3 by 3's.
 		 */
 		JPanel panel = new JPanel();
@@ -57,6 +61,29 @@ public class GUIelement {
 		buttonh.setBackground(Color.black);
 		buttonh.setName("h");
 		JButton buttoni = new JButton("");
+		JPanel panel2 = new JPanel();
+		JButton reset = new JButton("Reset");
+		reset.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Methods.reset(frame);
+			}
+			
+		});
+		
+		JButton close = new JButton("Close");
+		panel2.add(reset);
+		panel2.add(close);
+		close.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+			
+		});
+		
 		buttoni.setBackground(Color.black);
 		buttoni.setName("i");
 		panel.add(buttona);
@@ -87,6 +114,7 @@ public class GUIelement {
 		Methods.newWindowOnClick(buttoni,frame);
 
 		frame.add(panel);
+		frame.add(panel2,BorderLayout.SOUTH);
 		frame.setVisible(true);
 
 		
