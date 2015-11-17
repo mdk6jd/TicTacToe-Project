@@ -1,12 +1,11 @@
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,7 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class Methods {
@@ -58,7 +56,7 @@ public class Methods {
 				dia.add(pan);
 
 				dia.setVisible(true);
-				Methods.closeDialog4Win(dia);
+				dia.dispose();
 
 			}
 
@@ -133,15 +131,23 @@ public class Methods {
 						poso.add(pos);
 
 					}
-
-					if ((posx.contains(1) && posx.contains(2) && posx.contains(0))
-							|| (posx.contains(0) && posx.contains(3) && posx.contains(6))
-							|| (posx.contains(0) && posx.contains(4) && posx.contains(8))
-							|| (posx.contains(1) && posx.contains(4) && posx.contains(7))
-							|| (posx.contains(2) && posx.contains(4) && posx.contains(6))
-							|| (posx.contains(2) && posx.contains(5) && posx.contains(8))
-							|| (posx.contains(3) && posx.contains(4) && posx.contains(5))
-							|| (posx.contains(6) && posx.contains(7) && posx.contains(8))) {
+					
+					if ((posx.contains(1) && posx.contains(2) && posx
+							.contains(0))
+							|| (posx.contains(0) && posx.contains(3) && posx
+									.contains(6))
+							|| (posx.contains(0) && posx.contains(4) && posx
+									.contains(8))
+							|| (posx.contains(1) && posx.contains(4) && posx
+									.contains(7))
+							|| (posx.contains(2) && posx.contains(4) && posx
+									.contains(6))
+							|| (posx.contains(2) && posx.contains(5) && posx
+									.contains(8))
+							|| (posx.contains(3) && posx.contains(4) && posx
+									.contains(5))
+							|| (posx.contains(6) && posx.contains(7) && posx
+									.contains(8))) {
 						pan.removeAll();
 						pan.updateUI();
 						posx.clear();
@@ -183,14 +189,22 @@ public class Methods {
 						// dialog.setVisible(true);
 						count = 0;
 
-					} else if ((poso.contains(1) && poso.contains(2) && poso.contains(0))
-							|| (poso.contains(0) && poso.contains(3) && poso.contains(6))
-							|| (poso.contains(0) && poso.contains(4) && poso.contains(8))
-							|| (poso.contains(1) && poso.contains(4) && poso.contains(7))
-							|| (poso.contains(2) && poso.contains(4) && poso.contains(6))
-							|| (poso.contains(2) && poso.contains(5) && poso.contains(8))
-							|| (poso.contains(3) && poso.contains(4) && poso.contains(5))
-							|| (poso.contains(6) && poso.contains(7) && poso.contains(8))) {
+					} else if ((poso.contains(1) && poso.contains(2) && poso
+							.contains(0))
+							|| (poso.contains(0) && poso.contains(3) && poso
+									.contains(6))
+							|| (poso.contains(0) && poso.contains(4) && poso
+									.contains(8))
+							|| (poso.contains(1) && poso.contains(4) && poso
+									.contains(7))
+							|| (poso.contains(2) && poso.contains(4) && poso
+									.contains(6))
+							|| (poso.contains(2) && poso.contains(5) && poso
+									.contains(8))
+							|| (poso.contains(3) && poso.contains(4) && poso
+									.contains(5))
+							|| (poso.contains(6) && poso.contains(7) && poso
+									.contains(8))) {
 						pan.removeAll();
 						pan.updateUI();
 						posx.clear();
@@ -204,6 +218,9 @@ public class Methods {
 						Methods.mainWinStatus();
 						posx.clear();
 						poso.clear();
+						
+						
+						
 
 						// JDialog dialog = new JDialog();
 						// dialog.setSize(200, 100);
@@ -236,120 +253,130 @@ public class Methods {
 
 						count = 1;
 
-					} else if (posx.size() == 4 && poso.size() == 5 || poso.size() == 4 && posx.size() == 5) {
-						JDialog dialog = new JDialog();
-						dialog.setLayout(new GridLayout(2, 2));
-						JButton replay = new JButton("Replay");
-						JButton guess = new JButton("Play Guess the Number");
-						dialog.setSize(500, 200);
-						dialog.getContentPane().setBackground(Color.green);
-						JLabel winstatus = new JLabel();
-						JLabel question = new JLabel();
-						Font csans = new Font("Helvetica", 15, 15);
-						question.setFont(csans);
-						question.setText("replay or play my guessing game?");
-						question.setHorizontalAlignment(SwingConstants.CENTER);
-						winstatus.setFont(csans);
-						winstatus.setText("It seems it's a tie! Would you like to:");
-						winstatus.setHorizontalAlignment(SwingConstants.CENTER);
-						dialog.add(winstatus);
-						dialog.add(question);
-						dialog.add(replay);
-						dialog.add(guess);
-						dialog.setLocationRelativeTo(mainFrame);
-						replay.addActionListener(new ActionListener() {
-							@Override
-							public void actionPerformed(ActionEvent arg0) {
-								dialog.dispose();
-								posx.clear();
-								poso.clear();
-								pan.removeAll();
-								pan.updateUI();
-								listOButtons.clear();
-								dia.dispose();
-							}
-						});
-
-						guess.addActionListener(new ActionListener() {
-
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								dialog.dispose();
-								JDialog tieDialog = new JDialog();
-								tieDialog.setSize(200, 200);
-								tieDialog.setLocation(200, 200);
-								JPanel tiePanel = new JPanel();
-
-								boolean status = true;
-								while (status) {
-									String xNumber = (String) JOptionPane
-											.showInputDialog("Player X, guess a number 1-10:");
-									String oNumber = (String) JOptionPane
-											.showInputDialog("Player O, guess a number 1-10:");
-
-									Random randomGenerator = new Random();
-									int randomInt = randomGenerator.nextInt(100);
-									int intXNumber = Integer.parseInt(xNumber);
-									int intONumber = Integer.parseInt(oNumber);
-									int xDifference = randomInt - intXNumber;
-									int oDifference = randomInt - intONumber;
-
-									if (Math.abs(xDifference) > Math.abs(oDifference)) {
-										pan.removeAll();
-										pan.updateUI();
-										posx.clear();
-										poso.clear();
-										listOButtons.clear();
-										dia.dispose();
-										mainButtons.setIcon(img4);
-										mainButtons.setDisabledIcon(img4);
-										mainButtons.setEnabled(false);
-										mainChecksO.add(mainButtons.getName());
-										Methods.mainWinStatus();
-										posx.clear();
-										poso.clear();
-										count = 1;
-										status = false;
-									} else if (Math.abs(xDifference) < Math.abs(oDifference)) {
-										pan.removeAll();
-										pan.updateUI();
-										posx.clear();
-										poso.clear();
-										listOButtons.clear();
-										dia.dispose();
-										mainButtons.setIcon(img3);
-										mainButtons.setDisabledIcon(img3);
-										mainButtons.setEnabled(false);
-										mainChecksX.add(mainButtons.getName());
-										Methods.mainWinStatus();
-										posx.clear();
-										poso.clear();
-										count = 0;
-										status = false;
-									}
-
+					} else if (posx.size() == 4 && poso.size() == 5
+							|| poso.size() == 4 && posx.size() == 5) {
+											JDialog dialog = new JDialog();
+							dialog.setLayout(new GridLayout(2, 2));
+							JButton replay = new JButton("Replay");
+							JButton guess = new JButton("Play Guess the Number");
+							dialog.setSize(500, 200);
+							dialog.getContentPane().setBackground(Color.green);
+							JLabel winstatus = new JLabel();
+							JLabel question = new JLabel();
+							Font csans = new Font("Helvetica", 15, 15);
+							question.setFont(csans);
+							question.setText("replay or play my guessing game?");
+							question.setHorizontalAlignment(SwingConstants.CENTER);
+							winstatus.setFont(csans);
+							winstatus.setText("It seems it's a tie! Would you like to:");
+							winstatus.setHorizontalAlignment(SwingConstants.CENTER);
+							dialog.add(winstatus);
+							dialog.add(question);
+							dialog.add(replay);
+							dialog.add(guess);
+							dialog.setLocationRelativeTo(mainFrame);
+							replay.addActionListener(new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent arg0) {
+									dialog.dispose();
+									posx.clear();
+									poso.clear();
+									pan.removeAll();
+									pan.updateUI();
+									listOButtons.clear();
+									dia.dispose();
 								}
-							}
-
-						});
-						dialog.setModal(true);
-						dialog.setVisible(true);
-						count = 1;
+							});
+	
+							guess.addActionListener(new ActionListener() {
+	
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									dialog.dispose();
+									JDialog tieDialog = new JDialog();
+									tieDialog.setSize(200, 200);
+									tieDialog.setLocation(200, 200);
+									JPanel tiePanel = new JPanel();
+	
+									boolean status = true;
+									while (status) {
+										String xNumber = (String) JOptionPane
+												.showInputDialog("Player X, guess a number 1-10:");
+										String oNumber = (String) JOptionPane
+												.showInputDialog("Player O, guess a number 1-10:");
+	
+										Random randomGenerator = new Random();
+										int randomInt = randomGenerator.nextInt(10);
+										int intXNumber = Integer.parseInt(xNumber);
+										int intONumber = Integer.parseInt(oNumber);
+										int xDifference = randomInt - intXNumber;
+										int oDifference = randomInt - intONumber;
+	
+										if (Math.abs(xDifference) > Math.abs(oDifference)) {
+											
+											pan.removeAll();
+											pan.updateUI();
+											posx.clear();
+											poso.clear();
+											listOButtons.clear();
+											dia.dispose();
+											mainButtons.setIcon(img4);
+											mainButtons.setDisabledIcon(img4);
+											mainButtons.setEnabled(false);
+											mainChecksO.add(mainButtons.getName());
+											Methods.mainWinStatus();
+											posx.clear();
+											poso.clear();
+											count = 1;
+											status = false;
+										} else if (Math.abs(xDifference) < Math.abs(oDifference)) {
+											pan.removeAll();
+											pan.updateUI();
+											posx.clear();
+											poso.clear();
+											listOButtons.clear();
+											dia.dispose();
+											mainButtons.setIcon(img3);
+											mainButtons.setDisabledIcon(img3);
+											mainButtons.setEnabled(false);
+											mainChecksX.add(mainButtons.getName());
+											Methods.mainWinStatus();
+											posx.clear();
+											poso.clear();
+											count = 0;
+											status = false;
+										}
+	
+									}
+								}
+	
+							});
+							dialog.setModal(true);
+							dialog.setVisible(true);
+							count = 1;
+						}
+	
 					}
-
-				}
-
-			});
-
-		}
-
+	
+				});
+	
+			}
 	}
 
-	
+		
 
-	
-	public static void closeDialog4Win(JDialog d) {
-		d.dispose();
+	public static void reset(JFrame frame) {
+		
+		mainChecksX.clear();
+		mainChecksO.clear();
+		posx.clear();
+		poso.clear();
+		listOButtons.clear();
+		
+		frame.dispose();
+		
+		
+		GUIelement.play();
 
 	}
 
@@ -372,32 +399,56 @@ public class Methods {
 					|| (mainChecksX.contains("g") && mainChecksX.contains("h") && mainChecksX
 							.contains("i"))) {
 				JDialog winDialog = new JDialog();
-				winDialog.setSize(200, 100);
+				winDialog.getContentPane().setBackground(Color.LIGHT_GRAY);
+				winDialog.setLayout(new FlowLayout());
+				winDialog.setSize(200, 150);
 				winDialog.setLocation(160, 160);
 				JPanel pane = new JPanel();
-				pane.setBackground(Color.LIGHT_GRAY);
+				JPanel pane2 = new JPanel();
+				JButton replay = new JButton("Replay?");
+				JButton close = new JButton("Close");
 				JLabel label = new JLabel("X's WIN");
 				label.setForeground(Color.DARK_GRAY);
-
+				label.setBackground(Color.LIGHT_GRAY);
 				label.setFont(new Font("Helvetica", Font.PLAIN, 27));
-
+				pane.setBackground(Color.LIGHT_GRAY);
+				pane2.setBackground(Color.LIGHT_GRAY);
+				pane.add(label);			
+				pane2.add(replay);
+				pane2.add(close);
 				pane.add(label);
 				winDialog.add(pane);
+				winDialog.add(pane2);
+				
+				replay.addActionListener(new ActionListener(){
 
-				winDialog.addWindowListener(new WindowAdapter() {
-					public void windowClosing(WindowEvent e) {
-						// System.out.println("YOOOOO");
-						mainChecksX.clear();
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						poso.clear();
+						posx.clear();
 						mainChecksO.clear();
-						mainFrame.removeAll();
-						mainFrame.repaint();
+						mainChecksX.clear();
+						listOButtons.clear();
 						mainFrame.dispose();
+						winDialog.dispose();
+						
 						GUIelement.play();
-
 					}
+					
 				});
+				close.addActionListener(new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.exit(0);
+						
+					}
+					
+				});
+				
 				winDialog.setModal(true);
 				winDialog.setVisible(true);
+
 			} else if ((mainChecksO.contains("a") && mainChecksO.contains("b") && mainChecksO
 					.contains("c"))
 					|| (mainChecksO.contains("a") && mainChecksO.contains("e") && mainChecksO
@@ -415,61 +466,92 @@ public class Methods {
 					|| (mainChecksO.contains("g") && mainChecksO.contains("h") && mainChecksO
 							.contains("i"))) {
 				JDialog winDialog = new JDialog();
-				winDialog.setSize(200, 100);
+				winDialog.getContentPane().setBackground(Color.DARK_GRAY);
+				winDialog.setLayout(new FlowLayout());
+				winDialog.setSize(200, 150);
 				winDialog.setLocation(160, 160);
 				JPanel pane = new JPanel();
+				JPanel pane2 = new JPanel();
+				JButton replay = new JButton("Replay?");
+				JButton close = new JButton("Close");
+				JLabel label = new JLabel("O's WIN");
+				label.setForeground(Color.LIGHT_GRAY);
+				label.setBackground(Color.DARK_GRAY);
+				label.setFont(new Font("Helvetica", Font.PLAIN, 27));
 				pane.setBackground(Color.DARK_GRAY);
-				JLabel label = new JLabel("O's WIN!");
-				label.setFont(new Font("Tahoma", Font.PLAIN, 27));
-				label.setForeground(Color.white);
+				pane2.setBackground(Color.DARK_GRAY);
+				pane.add(label);			
+				pane2.add(replay);
+				pane2.add(close);
 				pane.add(label);
 				winDialog.add(pane);
+				winDialog.add(pane2);
+				
+				replay.addActionListener(new ActionListener(){
 
-				winDialog.addWindowListener(new WindowAdapter() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						poso.clear();
+						posx.clear();
+						mainChecksO.clear();
+						mainChecksX.clear();
+						listOButtons.clear();
+						mainFrame.dispose();
+						winDialog.dispose();
+						
+						GUIelement.play();
+					}
+					
+				});
+				close.addActionListener(new ActionListener(){
 
-	public void windowClosing(WindowEvent e) {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.exit(0);
+						
+					}
+					
+				});
+				
+				winDialog.setModal(true);
+				winDialog.setVisible(true);
 
-		mainChecksX.clear();
-		mainChecksO.clear();
-		mainFrame.removeAll();
-		mainFrame.repaint();
-		mainFrame.dispose();
-		GUIelement.play();
+			} else if (mainChecksX.size() == 4 && mainChecksO.size() == 5
+					|| mainChecksO.size() == 4 && mainChecksX.size() == 5) {
+				// tie situation
+				
+				JDialog tieDialog = new JDialog();
+				tieDialog.setSize(200, 200);
+				tieDialog.setLocation(200, 200);
+				JPanel tiePanel = new JPanel();
 
-	}});winDialog.setModal(true);winDialog.setVisible(true);}else if(mainChecksX.size()==4&&mainChecksO.size()==5||mainChecksO.size()==4&&mainChecksX.size()==5){
-	// tie situation
+				boolean status = true;
+				while (status) {
+					JOptionPane xGuess = new JOptionPane();
+					String xNumber = (String) JOptionPane
+							.showInputDialog("It's a Tie! \n X: Pick a number between 1 and 100");
+					JOptionPane oGuess = new JOptionPane();
+					String oNumber = (String) JOptionPane
+							.showInputDialog("O: Pick a number between 1 and 100");
 
-	JDialog tieDialog = new JDialog();tieDialog.setSize(200,200);tieDialog.setLocation(200,200);
-	JPanel tiePanel = new JPanel();
+					Random randomGenerator = new Random();
+					int randomInt = randomGenerator.nextInt(100);
+					int intXNumber = Integer.parseInt(xNumber);
+					int intONumber = Integer.parseInt(oNumber);
+					int xDifference = randomInt - intXNumber;
+					int oDifference = randomInt - intONumber;
 
-	boolean status = true;while(status){
-	JOptionPane xGuess = new JOptionPane();
-	String xNumber = (String) JOptionPane.showInputDialog("It's a Tie! \n X: Pick a number between 1 and 100");
-	JOptionPane oGuess = new JOptionPane();
-	String oNumber = (String) JOptionPane.showInputDialog("O: Pick a number between 1 and 100");
-
-	Random randomGenerator = new Random();
-	int randomInt = randomGenerator.nextInt(100);
-	int intXNumber = Integer.parseInt(xNumber);
-	int intONumber = Integer.parseInt(oNumber);
-	int xDifference = randomInt - intXNumber;
-	int oDifference = randomInt - intONumber;
-
-	if(Math.abs(xDifference)>Math.abs(oDifference))
-
-	{
-		ImageIcon img = new ImageIcon("ofinalwin.jpg");
-		JLabel winDialog = new JLabel();
-		winDialog.setIcon(img);
-		winDialog.setVisible(true);
-		JFrame f = new JFrame();
-		f.add(winDialog);
-		f.setSize(400, 500);
-		f.setVisible(true);
-		status = false;
-	} else if(Math.abs(xDifference)<Math.abs(oDifference))
-
-	{
+					if (Math.abs(xDifference) > Math.abs(oDifference)) {
+						ImageIcon img = new ImageIcon("ofinalwin.jpg");
+						JLabel winDialog = new JLabel();
+						winDialog.setIcon(img);
+						winDialog.setVisible(true);
+						JFrame f = new JFrame();
+						f.add(winDialog);
+						f.setSize(400, 500);
+						f.setVisible(true);
+						status = false;
+					} else if (Math.abs(xDifference) < Math.abs(oDifference)) {
 						ImageIcon img = new ImageIcon("xfinalwin.jpg");
 						JLabel winDialog = new JLabel();
 						winDialog.setIcon(img);
@@ -480,22 +562,25 @@ public class Methods {
 						f.setVisible(true);
 						status = false;
 					}
-}}}}
+				}
+			}
+		}
+	}
 
-// public static void explosion() throws MalformedURLException {
-//
-// URL url = new
-// URL("https://www.giphy.com/gifs/explosion-nuclear-12KiGLydHEdak8");
-// Icon icon = new ImageIcon(url);
-// JLabel label = new JLabel(icon);
-//
-// JFrame f = new JFrame("Animation");
-// f.getContentPane().add(label);
-// f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-// f.pack();
-// f.setLocationRelativeTo(null);
-// f.setVisible(true);
-//
-// }
+	// public static void explosion() throws MalformedURLException {
+	//
+	// URL url = new
+	// URL("https://www.giphy.com/gifs/explosion-nuclear-12KiGLydHEdak8");
+	// Icon icon = new ImageIcon(url);
+	// JLabel label = new JLabel(icon);
+	//
+	// JFrame f = new JFrame("Animation");
+	// f.getContentPane().add(label);
+	// f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	// f.pack();
+	// f.setLocationRelativeTo(null);
+	// f.setVisible(true);
+	//
+	// }
 
 }
